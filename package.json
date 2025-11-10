@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
-    "start": "vite start",
+    "start": "vite",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
