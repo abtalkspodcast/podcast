@@ -125,7 +125,7 @@ function App() {
             transition: 'transform 0.1s ease-out'
           }}
         >
-          <source src="https://angular-webpage.s3.eu-north-1.amazonaws.com/assets/videos/3192305-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+          <source src="https://ggggg.s3.eu-north-1.amazonaws.com/3156778-hd_1920_1080_30fps.mp4" type="video/mp4" />
         </video>
         
         {/* Dark Overlay */}
@@ -237,7 +237,7 @@ function App() {
         <div 
           className="absolute w-full"
           style={{
-            backgroundImage: 'url(https://www.blueridge.edu/wp-content/uploads/2019/12/ftr-office-administration-dsc_8224-862x485.jpg)',
+            backgroundImage: 'url(https://ggggg.s3.eu-north-1.amazonaws.com/pexels-george-milton-6953765.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
             backgroundRepeat: 'no-repeat',
@@ -251,11 +251,11 @@ function App() {
         />
         
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="flex items-center">
             <div>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                 Analytics That Drive Results
@@ -281,15 +281,6 @@ function App() {
                   <span className="text-white text-lg">Mobile-optimized for betting on the go</span>
                 </li>
               </ul>
-            </div>
-            <div className="relative">
-              <div className="aspect-video bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <img
-                  src="https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                  alt="Sports Analytics"
-                  className="w-full h-full object-cover"
-                />
-              </div>
             </div>
           </div>
         </div>
