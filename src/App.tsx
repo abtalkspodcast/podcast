@@ -1,4 +1,4 @@
-import { Menu, X, Play, CheckCircle, Users, TrendingUp, BarChart3, Shield, Zap } from 'lucide-react';
+import { Menu, X, CheckCircle, Users, TrendingUp, BarChart3, Shield, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -7,6 +7,45 @@ function App() {
   const [showHeroContent, setShowHeroContent] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0.2);
   const [heroParallax, setHeroParallax] = useState(0);
+  const [typedLine1, setTypedLine1] = useState('');
+  const [typedLine2, setTypedLine2] = useState('');
+  const [showLine2, setShowLine2] = useState(false);
+
+  const line1Text = "Analytics That Drive Results";
+  const line2Text = "Our platform processes millions of data points to provide you with actionable insights and winning strategies.";
+
+  // Typing effect for line 1
+  useEffect(() => {
+    let index = 0;
+    const timer = setInterval(() => {
+      if (index <= line1Text.length) {
+        setTypedLine1(line1Text.slice(0, index));
+        index++;
+      } else {
+        clearInterval(timer);
+        setShowLine2(true);
+      }
+    }, 50);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Typing effect for line 2
+  useEffect(() => {
+    if (!showLine2) return;
+    
+    let index = 0;
+    const timer = setInterval(() => {
+      if (index <= line2Text.length) {
+        setTypedLine2(line2Text.slice(0, index));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 30);
+
+    return () => clearInterval(timer);
+  }, [showLine2]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,33 +86,40 @@ function App() {
     <div className="min-h-screen bg-white">
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-gray-900 shadow-lg' 
-          : 'bg-transparent'
+          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
+          : 'bg-white/10 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)]'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <div className="flex items-center space-x-2">
-                <TrendingUp className="h-8 w-8 text-green-500" />
-                <span className="text-2xl font-bold text-white">bigbets.ai</span>
-              </div>
+              <a href="#home" className="cursor-pointer">
+                <img 
+                  src="https://ggggg.s3.eu-north-1.amazonaws.com/Logo-removebg-preview+(1).png" 
+                  alt="Logo" 
+                  className="h-40 w-auto"
+                />
+              </a>
             </div>
 
             <div className="hidden md:flex items-center space-x-6">
-              <a href="#podcasting" className="text-gray-300 hover:text-white transition-colors">Podcasting</a>
-              <a href="#advertisers" className="text-gray-300 hover:text-white transition-colors">Advertisers</a>
-              <a href="#enterprise" className="text-gray-300 hover:text-white transition-colors">Enterprise</a>
-              <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">Pricing</a>
-              <a href="#resources" className="text-gray-300 hover:text-white transition-colors">Resources</a>
-              <span className="text-gray-600">|</span>
-              <a href="#discover" className="text-gray-300 hover:text-white transition-colors">Discover</a>
+              <a href="#podcasting" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Podcasting</a>
+              <a href="#advertisers" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Advertisers</a>
+              <a href="#enterprise" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Enterprise</a>
+              <a href="#pricing" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Pricing</a>
+              <a href="#analytics" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Resources</a>
+              <span className={`${isScrolled ? 'text-gray-400' : 'text-gray-500'}`}>|</span>
+              <a href="#discover" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Discover</a>
               <div className="flex items-center gap-3 ml-4">
                 <input 
                   type="text" 
                   placeholder="Search" 
-                  className="px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:border-green-500 w-48"
+                  className={`px-4 py-2 rounded-lg border focus:outline-none focus:border-green-500 w-48 transition-colors backdrop-blur-sm ${
+                    isScrolled 
+                      ? 'bg-white/20 text-gray-900 border-gray-300 placeholder:text-gray-600' 
+                      : 'bg-white/10 text-white border-white/30 placeholder:text-gray-300'
+                  }`}
                 />
-                <a href="#login" className="text-gray-300 hover:text-white transition-colors">Log in</a>
+                <a href="#login" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Log in</a>
                 <button className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">
                   Sign up free
                 </button>
@@ -81,7 +127,7 @@ function App() {
             </div>
 
             <button
-              className="md:hidden text-white"
+              className={`md:hidden ${isScrolled ? 'text-gray-900' : 'text-white'}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -92,18 +138,18 @@ function App() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-gray-800 border-t border-gray-700">
             <div className="px-4 py-4 space-y-3">
-              <a href="#podcasting" className="block text-gray-300 hover:text-white">Podcasting</a>
-              <a href="#advertisers" className="block text-gray-300 hover:text-white">Advertisers</a>
-              <a href="#enterprise" className="block text-gray-300 hover:text-white">Enterprise</a>
-              <a href="#pricing" className="block text-gray-300 hover:text-white">Pricing</a>
-              <a href="#resources" className="block text-gray-300 hover:text-white">Resources</a>
-              <a href="#discover" className="block text-gray-300 hover:text-white">Discover</a>
+              <a href="#podcasting" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Podcasting</a>
+              <a href="#advertisers" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Advertisers</a>
+              <a href="#enterprise" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Enterprise</a>
+              <a href="#pricing" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
+              <a href="#analytics" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Resources</a>
+              <a href="#discover" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Discover</a>
               <input 
                 type="text" 
                 placeholder="Search" 
                 className="w-full px-4 py-2 bg-gray-900 text-white rounded-lg border border-gray-700 focus:outline-none focus:border-green-500"
               />
-              <a href="#login" className="block text-gray-300 hover:text-white">Log in</a>
+              <a href="#login" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Log in</a>
               <button className="w-full px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">
                 Sign up free
               </button>
@@ -112,7 +158,7 @@ function App() {
         )}
       </nav>
 
-      <section className="relative pt-16 min-h-screen flex items-center overflow-hidden">
+      <section className="relative pt-16 min-h-screen flex items-center overflow-hidden" id="home">
         {/* Video Background with Parallax */}
         <video
           autoPlay
@@ -143,13 +189,9 @@ function App() {
               <p className="text-xl text-white mb-8">
                 Make smarter bets with advanced analytics, real-time insights, and AI-driven predictions. Join thousands of users maximizing their winning potential.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-6 py-3 sm:px-8 sm:py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold text-base sm:text-lg">
+              <div className="flex justify-start">
+                <button className="px-12 py-4 sm:px-16 sm:py-5 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors font-semibold text-lg sm:text-xl shadow-lg">
                   Get Started For Free
-                </button>
-                <button className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-gray-900 transition-colors font-semibold text-base sm:text-lg flex items-center justify-center">
-                  <Play className="h-5 w-5 mr-2" />
-                  Watch Demo
                 </button>
               </div>
             </div>
@@ -157,7 +199,57 @@ function App() {
         </div>
       </section>
 
-      <section className="py-20 bg-white" id="features">
+      <section className="py-20 bg-gray-50" id="podcasting">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              From betting newbie to professional bettor
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              For over 10 years, more than 600,000 bettors have launched their betting journey and achieved their goals on bigbets.ai.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              {/* Image */}
+              <img 
+                src="https://pbcdn1.podbean.com/fs1/site/www-v2/images/double/h-feature@2x_resize_2x.webp"
+                alt="Professional betting platform"
+                className="w-full h-auto"
+              />
+              
+              {/* Animated Waveform Overlay */}
+              <div className="absolute top-[35%] left-32 transform -translate-y-1/2 flex items-center gap-1 bg-white rounded-full px-3 py-2">
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '12px', animation: 'wave 0.6s ease-in-out infinite' }}></div>
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '20px', animation: 'wave 0.6s ease-in-out 0.06s infinite' }}></div>
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '10px', animation: 'wave 0.6s ease-in-out 0.12s infinite' }}></div>
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '18px', animation: 'wave 0.6s ease-in-out 0.18s infinite' }}></div>
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '15px', animation: 'wave 0.6s ease-in-out 0.24s infinite' }}></div>
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '24px', animation: 'wave 0.6s ease-in-out 0.3s infinite' }}></div>
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '12px', animation: 'wave 0.6s ease-in-out 0.36s infinite' }}></div>
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '20px', animation: 'wave 0.6s ease-in-out 0.42s infinite' }}></div>
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '10px', animation: 'wave 0.6s ease-in-out 0.48s infinite' }}></div>
+                <div className="w-1 bg-red-500 rounded-full animate-wave" style={{ height: '16px', animation: 'wave 0.6s ease-in-out 0.54s infinite' }}></div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Create and publish your bets like a pro
+              </h3>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                Make compelling bets right from your phone with the betting analytics app or capture any moment with professional-quality bigbets.ai live tracking. Publish your predictions and strategies in one ultra-simple, secure platform to grow your audience quickly and easily.
+              </p>
+              <a href="#" className="text-lg font-semibold text-gray-900 hover:text-green-600 transition-colors inline-flex items-center">
+                Start betting smart →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white" id="advertisers">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -257,11 +349,13 @@ function App() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center">
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Analytics That Drive Results
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 min-h-[60px]">
+                {typedLine1}
+                <span className="animate-pulse">|</span>
               </h2>
-              <p className="text-xl text-white opacity-90 mb-8">
-                Our platform processes millions of data points to provide you with actionable insights and winning strategies.
+              <p className="text-xl text-white opacity-90 mb-8 min-h-[100px]">
+                {typedLine2}
+                {showLine2 && typedLine2.length < line2Text.length && <span className="animate-pulse">|</span>}
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -286,7 +380,7 @@ function App() {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50" id="enterprise">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -453,7 +547,7 @@ function App() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white" id="discover">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
             Ready to Start Winning?
@@ -471,9 +565,12 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <TrendingUp className="h-6 w-6 text-green-600" />
-                <span className="text-xl font-bold text-white">bigbets.ai</span>
+              <div className="flex items-center mb-4">
+                <img 
+                  src="https://ggggg.s3.eu-north-1.amazonaws.com/Logo__1_-removebg-preview+(1).png" 
+                  alt="Logo" 
+                  className="h-32 w-auto"
+                />
               </div>
               <p className="text-sm">
                 Your AI-powered betting analytics platform for smarter decisions.
@@ -505,7 +602,7 @@ function App() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
-            <p>&copy; 2025 bigbets.ai. All rights reserved.</p>
+            <p>&copy; 2025 All rights reserved.</p>
           </div>
         </div>
       </footer>
