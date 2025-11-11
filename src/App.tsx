@@ -1,6 +1,7 @@
 import { Menu, X, CheckCircle, Users, TrendingUp, BarChart3, Shield, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import ContactForm from './ContactForm';
+import AuthPage from './AuthPage';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,6 +13,8 @@ function App() {
   const [typedLine2, setTypedLine2] = useState('');
   const [showLine2, setShowLine2] = useState(false);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [isAuthPageOpen, setIsAuthPageOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('signup');
   const [searchQuery, setSearchQuery] = useState('');
   // removed unused search-open state
 
@@ -200,12 +203,18 @@ function App() {
                     }`}
                   />
                 </form>
-                <a href="#login" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Log in</a>
-                <a href="#pricing">
-                  <button className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">
-                    Sign up free
-                  </button>
-                </a>
+                <button 
+                  onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); }}
+                  className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}
+                >
+                  Log in
+                </button>
+                <button 
+                  onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); }}
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                >
+                  Sign up free
+                </button>
               </div>
             </div>
 
@@ -244,12 +253,18 @@ function App() {
               <a href="#pricing" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
               <a href="#analytics" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Resources</a>
               <a href="#discover" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Discover</a>
-              <a href="#login" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Log in</a>
-              <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>
-                <button className="w-full px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">
-                  Sign up free
-                </button>
-              </a>
+              <button 
+                onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); setMobileMenuOpen(false); }}
+                className="block text-gray-300 hover:text-white w-full text-center"
+              >
+                Log in
+              </button>
+              <button 
+                onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); setMobileMenuOpen(false); }}
+                className="w-full px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+              >
+                Sign up free
+              </button>
             </div>
           </div>
         )}
@@ -541,94 +556,100 @@ function App() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-gray-50 p-8 rounded-2xl">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Free</h3>
-              <p className="text-sm md:text-base text-gray-600 mb-6">Perfect for getting started</p>
+            {/* Free Plan */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg transition-all duration-300 hover:bg-green-600 hover:shadow-2xl hover:scale-105 group flex flex-col">
+              <h3 className="text-xl md:text-2xl font-bold mb-2 group-hover:text-white text-gray-900">Free</h3>
+              <p className="text-sm md:text-base mb-6 group-hover:text-white group-hover:opacity-90 text-gray-600">Perfect for getting started</p>
               <div className="mb-6">
-                <span className="text-3xl md:text-4xl font-bold text-gray-900">$0</span>
-                <span className="text-gray-600">/month</span>
+                <span className="text-3xl md:text-4xl font-bold group-hover:text-white text-gray-900">$0</span>
+                <span className="group-hover:text-white group-hover:opacity-90 text-gray-600">/month</span>
               </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-sm md:text-base text-gray-700">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+              <ul className="space-y-3 mb-8 flex-grow">
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   Basic analytics
                 </li>
-                <li className="flex items-center text-sm md:text-base text-gray-700">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   5 predictions per week
                 </li>
-                <li className="flex items-center text-sm md:text-base text-gray-700">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   Community access
                 </li>
               </ul>
-              <a href="#discover" className="block">
-                <button className="w-full px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-green-600 hover:text-green-600 transition-colors font-semibold">
+              <a href="#discover" className="block mt-auto">
+                <button className="w-full px-6 py-3 bg-white text-green-600 rounded-lg hover:bg-gray-100 transition-colors font-semibold group-hover:bg-white group-hover:text-green-600 border border-green-600">
                   Get Started
                 </button>
               </a>
             </div>
 
-            <div className="bg-green-600 p-8 rounded-2xl shadow-xl transform scale-105">
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Pro</h3>
-              <p className="text-sm md:text-base text-white opacity-90 mb-6">Most popular choice</p>
-              <div className="mb-6">
-                <span className="text-3xl md:text-4xl font-bold text-white">$49</span>
-                <span className="text-white opacity-90">/month</span>
+            {/* Pro Plan */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg transition-all duration-300 hover:bg-green-600 hover:shadow-2xl hover:scale-105 group relative flex flex-col">
+              <div className="absolute top-4 right-4 bg-green-600 text-white text-xs px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Most Popular
               </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-sm md:text-base text-white">
-                  <CheckCircle className="h-5 w-5 text-white mr-2" />
+              <h3 className="text-xl md:text-2xl font-bold mb-2 group-hover:text-white text-gray-900">Pro</h3>
+              <p className="text-sm md:text-base mb-6 group-hover:text-white group-hover:opacity-90 text-gray-600">Most popular choice</p>
+              <div className="mb-6">
+                <span className="text-3xl md:text-4xl font-bold group-hover:text-white text-gray-900">$49</span>
+                <span className="group-hover:text-white group-hover:opacity-90 text-gray-600">/month</span>
+              </div>
+              <ul className="space-y-3 mb-8 flex-grow">
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   Advanced analytics
                 </li>
-                <li className="flex items-center text-sm md:text-base text-white">
-                  <CheckCircle className="h-5 w-5 text-white mr-2" />
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   Unlimited predictions
                 </li>
-                <li className="flex items-center text-sm md:text-base text-white">
-                  <CheckCircle className="h-5 w-5 text-white mr-2" />
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   AI-powered insights
                 </li>
-                <li className="flex items-center text-sm md:text-base text-white">
-                  <CheckCircle className="h-5 w-5 text-white mr-2" />
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   Priority support
                 </li>
               </ul>
-              <a href="#discover" className="block">
-                <button className="w-full px-6 py-3 bg-white text-green-600 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
+              <a href="#discover" className="block mt-auto">
+                <button className="w-full px-6 py-3 bg-white text-green-600 rounded-lg hover:bg-gray-100 transition-colors font-semibold group-hover:bg-white group-hover:text-green-600 border border-green-600">
                   Start Free Trial
                 </button>
               </a>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-2xl">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
-              <p className="text-sm md:text-base text-gray-600 mb-6">For serious bettors</p>
+            {/* Enterprise Plan */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg transition-all duration-300 hover:bg-green-600 hover:shadow-2xl hover:scale-105 group flex flex-col">
+              <h3 className="text-xl md:text-2xl font-bold mb-2 group-hover:text-white text-gray-900">Enterprise</h3>
+              <p className="text-sm md:text-base mb-6 group-hover:text-white group-hover:opacity-90 text-gray-600">For serious bettors</p>
               <div className="mb-6">
-                <span className="text-3xl md:text-4xl font-bold text-gray-900">$199</span>
-                <span className="text-gray-600">/month</span>
+                <span className="text-3xl md:text-4xl font-bold group-hover:text-white text-gray-900">$199</span>
+                <span className="group-hover:text-white group-hover:opacity-90 text-gray-600">/month</span>
               </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-sm md:text-base text-gray-700">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+              <ul className="space-y-3 mb-8 flex-grow">
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   Everything in Pro
                 </li>
-                <li className="flex items-center text-sm md:text-base text-gray-700">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   Custom AI models
                 </li>
-                <li className="flex items-center text-sm md:text-base text-gray-700">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   API access
                 </li>
-                <li className="flex items-center text-sm md:text-base text-gray-700">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                <li className="flex items-center text-sm md:text-base group-hover:text-white text-gray-700">
+                  <CheckCircle className="h-5 w-5 mr-2 group-hover:text-white text-green-600" />
                   Dedicated account manager
                 </li>
               </ul>
               <button 
                 onClick={() => setIsContactFormOpen(true)}
-                className="w-full px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-green-600 hover:text-green-600 transition-colors font-semibold"
+                className="w-full px-6 py-3 bg-white text-green-600 rounded-lg hover:bg-gray-100 transition-colors font-semibold group-hover:bg-white group-hover:text-green-600 border border-green-600 mt-auto"
               >
                 Contact Sales
               </button>
@@ -655,13 +676,13 @@ function App() {
 
       <footer className="bg-gray-900 text-gray-400 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8 text-center md:text-left">
             <div>
-              <div className="flex items-center mb-4">
+              <div className="flex items-center justify-center md:justify-start mb-4">
                 <img 
                   src="https://ggggg.s3.eu-north-1.amazonaws.com/Logo__1_-removebg-preview+(1).png" 
                   alt="Logo" 
-                  className="h-10 md:h-32 w-auto"
+                  className="h-10 md:h-16 w-auto"
                 />
               </div>
               <p className="text-sm">
@@ -691,7 +712,7 @@ function App() {
                 <li>
                   <button 
                     onClick={() => setIsContactFormOpen(true)} 
-                    className="hover:text-green-600 transition-colors text-left"
+                    className="hover:text-green-600 transition-colors"
                   >
                     Contact
                   </button>
@@ -708,6 +729,9 @@ function App() {
 
       {/* Contact Form Modal */}
       <ContactForm isOpen={isContactFormOpen} onClose={() => setIsContactFormOpen(false)} />
+      
+      {/* Auth Page Modal */}
+      <AuthPage isOpen={isAuthPageOpen} onClose={() => setIsAuthPageOpen(false)} initialMode={authMode} />
     </div>
   );
 }
