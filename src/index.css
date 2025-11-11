@@ -6,6 +6,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hero parallax video transform */
+.hero-parallax {
+  transform: translateY(var(--hero-translate, 0px));
+  transition: transform 0.1s ease-out;
+}
+
+/* Analytics background parallax transform */
+.analytics-bg {
+  transform: translateY(var(--analytics-translate, -20%));
+  transition: transform 0.3s ease-out;
+}
+
 @keyframes wave {
   0%, 100% {
     transform: scaleY(1);
@@ -16,5 +28,31 @@ html {
 }
 
 .animate-wave {
-  animation: wave 1s ease-in-out infinite;
+  animation: wave 0.6s ease-in-out infinite;
+}
+
+/* Waveform helpers: heights and staggered delays */
+.wave-1 { height: 8px; animation-delay: 0s; }
+.wave-2 { height: 14px; animation-delay: 0.06s; }
+.wave-3 { height: 6px; animation-delay: 0.12s; }
+.wave-4 { height: 12px; animation-delay: 0.18s; }
+.wave-5 { height: 10px; animation-delay: 0.24s; }
+.wave-6 { height: 16px; animation-delay: 0.30s; }
+.wave-7 { height: 8px; animation-delay: 0.36s; }
+.wave-8 { height: 14px; animation-delay: 0.42s; }
+.wave-9 { height: 6px; animation-delay: 0.48s; }
+.wave-10 { height: 11px; animation-delay: 0.54s; }
+
+/* Desktop wave heights - restore original */
+@media (min-width: 768px) {
+  .wave-1 { height: 12px; }
+  .wave-2 { height: 20px; }
+  .wave-3 { height: 10px; }
+  .wave-4 { height: 18px; }
+  .wave-5 { height: 15px; }
+  .wave-6 { height: 24px; }
+  .wave-7 { height: 12px; }
+  .wave-8 { height: 20px; }
+  .wave-9 { height: 10px; }
+  .wave-10 { height: 16px; }
 }
