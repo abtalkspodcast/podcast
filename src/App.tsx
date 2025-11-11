@@ -1,4 +1,4 @@
-import { Menu, X, CheckCircle, Users, TrendingUp, BarChart3, Shield, Zap } from 'lucide-react';
+import { Menu, X, CheckCircle, Users, TrendingUp, BarChart3, Shield, Zap, LogOut } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import ContactForm from './ContactForm';
 import AuthPage from './AuthPage';
@@ -16,7 +16,28 @@ function App() {
   const [isAuthPageOpen, setIsAuthPageOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('signup');
   const [searchQuery, setSearchQuery] = useState('');
+  const [userData, setUserData] = useState<{ name: string; email: string } | null>(null);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   // removed unused search-open state
+
+  // Check if user is logged in on component mount
+  useEffect(() => {
+    const storedData = localStorage.getItem('userData');
+    if (storedData) {
+      setUserData(JSON.parse(storedData));
+    }
+  }, []);
+
+  const handleAuthSuccess = (data: { name: string; email: string }) => {
+    setUserData(data);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('userData');
+    setUserData(null);
+    setShowUserMenu(false);
+    alert('Logged out successfully!');
+  };
 
   const line1Text = "Analytics That Drive Results";
   const line2Text = "Our platform processes millions of data points to provide you with actionable insights and winning strategies.";
@@ -189,7 +210,7 @@ function App() {
               <a href="#analytics" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Resources</a>
               <span className={`${isScrolled ? 'text-gray-400' : 'text-gray-500'}`}>|</span>
               <a href="#discover" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Discover</a>
-              <div className="flex items-center gap-3 ml-4">
+              <div className="flex items-center gap-6 ml-4">
                 <form onSubmit={handleSearch} className="relative">
                   <input 
                     type="text" 
@@ -203,18 +224,57 @@ function App() {
                     }`}
                   />
                 </form>
-                <button 
-                  onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); }}
-                  className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}
-                >
-                  Log in
-                </button>
-                <button 
-                  onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); }}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
-                >
-                  Sign up free
-                </button>
+                
+                {/* Conditional rendering: Show avatar if logged in, otherwise show auth buttons */}
+                {userData ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowUserMenu(!showUserMenu)}
+                      className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+                    >
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
+                        isScrolled ? 'bg-green-600 text-white' : 'bg-white text-green-600'
+                      }`}>
+                        {userData.name.charAt(0).toUpperCase()}
+                      </div>
+                      <span className={`font-medium ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
+                        Hello, {userData.name}
+                      </span>
+                    </button>
+                    
+                    {/* User dropdown menu */}
+                    {showUserMenu && (
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                        <div className="px-4 py-2 border-b border-gray-200">
+                          <p className="font-medium text-gray-900">{userData.name}</p>
+                          <p className="text-sm text-gray-500 truncate">{userData.email}</p>
+                        </div>
+                        <button
+                          onClick={handleLogout}
+                          className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100 flex items-center gap-2"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          Logout
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <>
+                    <button 
+                      onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); }}
+                      className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}
+                    >
+                      Log in
+                    </button>
+                    <button 
+                      onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); }}
+                      className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                    >
+                      Sign up free
+                    </button>
+                  </>
+                )}
               </div>
             </div>
 
@@ -253,18 +313,43 @@ function App() {
               <a href="#pricing" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
               <a href="#analytics" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Resources</a>
               <a href="#discover" className="block text-gray-300 hover:text-white" onClick={() => setMobileMenuOpen(false)}>Discover</a>
-              <button 
-                onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); setMobileMenuOpen(false); }}
-                className="block text-gray-300 hover:text-white w-full text-center"
-              >
-                Log in
-              </button>
-              <button 
-                onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); setMobileMenuOpen(false); }}
-                className="w-full px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
-              >
-                Sign up free
-              </button>
+              
+              {/* Mobile auth section */}
+              {userData ? (
+                <div className="pt-3 border-t border-gray-700">
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold">
+                      {userData.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div className="text-left">
+                      <p className="text-white font-medium">{userData.name}</p>
+                      <p className="text-gray-400 text-sm truncate max-w-[150px]">{userData.email}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => { handleLogout(); setMobileMenuOpen(false); }}
+                    className="w-full px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center justify-center gap-2"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <button 
+                    onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); setMobileMenuOpen(false); }}
+                    className="block text-gray-300 hover:text-white w-full text-center"
+                  >
+                    Log in
+                  </button>
+                  <button 
+                    onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); setMobileMenuOpen(false); }}
+                    className="w-full px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                  >
+                    Sign up free
+                  </button>
+                </>
+              )}
             </div>
           </div>
         )}
@@ -731,7 +816,12 @@ function App() {
       <ContactForm isOpen={isContactFormOpen} onClose={() => setIsContactFormOpen(false)} />
       
       {/* Auth Page Modal */}
-      <AuthPage isOpen={isAuthPageOpen} onClose={() => setIsAuthPageOpen(false)} initialMode={authMode} />
+      <AuthPage 
+        isOpen={isAuthPageOpen} 
+        onClose={() => setIsAuthPageOpen(false)} 
+        initialMode={authMode}
+        onAuthSuccess={handleAuthSuccess}
+      />
     </div>
   );
 }

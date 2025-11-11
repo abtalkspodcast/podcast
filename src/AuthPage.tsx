@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 
 interface AuthPageProps {
   isOpen: boolean;
   onClose: () => void;
   initialMode?: 'login' | 'signup';
+  onAuthSuccess: (userData: { name: string; email: string }) => void;
 }
 
-function AuthPage({ isOpen, onClose, initialMode = 'signup' }: AuthPageProps) {
+function AuthPage({ isOpen, onClose, initialMode = 'signup', onAuthSuccess }: AuthPageProps) {
   const [mode, setMode] = useState<'login' | 'signup'>(initialMode);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -16,11 +17,59 @@ function AuthPage({ isOpen, onClose, initialMode = 'signup' }: AuthPageProps) {
     name: ''
   });
 
+  // Update mode when initialMode changes (when modal reopens)
+  useEffect(() => {
+    if (isOpen) {
+      setMode(initialMode);
+      // Reset form when modal opens
+      setFormData({
+        email: '',
+        password: '',
+        name: ''
+      });
+      setShowPassword(false);
+    }
+  }, [isOpen, initialMode]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert(`${mode === 'login' ? 'Login' : 'Sign up'} successful!`);
-    onClose();
+    
+    if (mode === 'signup') {
+      // Save user data to localStorage
+      const userData = {
+        name: formData.name,
+        email: formData.email
+      };
+      localStorage.setItem('userData', JSON.stringify(userData));
+      
+      alert('Sign up successful! Please log in.');
+      
+      // Switch to login mode after signup
+      setMode('login');
+      setFormData({
+        email: formData.email,
+        password: '',
+        name: ''
+      });
+    } else {
+      // Login mode - retrieve stored data
+      const storedData = localStorage.getItem('userData');
+      
+      if (storedData) {
+        const userData = JSON.parse(storedData);
+        
+        // Simple validation (in real app, you'd validate against backend)
+        if (formData.email === userData.email) {
+          alert('Login successful!');
+          onAuthSuccess(userData);
+          onClose();
+        } else {
+          alert('Invalid credentials. Please try again.');
+        }
+      } else {
+        alert('No account found. Please sign up first.');
+      }
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
