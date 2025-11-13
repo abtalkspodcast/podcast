@@ -1,0 +1,156 @@
+/* ============================================
+   CHRISTMAS PAGE ENHANCEMENTS
+   ============================================ */
+
+/* Button Glow Effects */
+.christmas-theme button,
+.christmas-theme .btn,
+.christmas-theme a[class*="px-"] {
+  transition: all 0.3s ease;
+}
+
+.christmas-theme button:hover,
+.christmas-theme .btn:hover {
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.4),
+    0 0 40px rgba(255, 215, 0, 0.2);
+}
+
+/* Green Buttons - Christmas Green Glow */
+.christmas-theme button[class*="green"]:hover,
+.christmas-theme .bg-green-600:hover {
+  box-shadow: 
+    0 0 20px rgba(15, 138, 95, 0.6),
+    0 0 40px rgba(15, 138, 95, 0.3) !important;
+}
+
+/* Blue Buttons - Gold Glow */
+.christmas-theme button[class*="blue"]:hover,
+.christmas-theme .bg-blue-600:hover {
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.6),
+    0 0 40px rgba(255, 215, 0, 0.3) !important;
+}
+
+/* Card Subtle Glow */
+.christmas-theme .bg-white:not(button),
+.christmas-theme [class*="rounded-"]:not(button) {
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(255, 215, 0, 0.05);
+}
+
+/* Avatar Glow Effect */
+.christmas-theme [class*="rounded-full"] {
+  box-shadow: 
+    0 0 15px rgba(15, 138, 95, 0.3),
+    0 0 30px rgba(15, 138, 95, 0.1);
+}
+
+/* Text Color Overrides for Visibility */
+.christmas-theme h1,
+.christmas-theme h2,
+.christmas-theme h3,
+.christmas-theme h4,
+.christmas-theme h5,
+.christmas-theme h6 {
+  color: inherit !important;
+  text-shadow: none !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+/* Ensure white text stays white */
+.christmas-theme .text-white {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Ensure black/dark text stays dark */
+.christmas-theme .text-gray-900,
+.christmas-theme .text-black {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+.christmas-theme .text-gray-700 {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+.christmas-theme .text-gray-400 {
+  color: #9ca3af !important;
+  -webkit-text-fill-color: #9ca3af !important;
+}
+
+/* Nav Links */
+.christmas-theme nav a {
+  color: inherit !important;
+  -webkit-text-fill-color: currentColor !important;
+  text-shadow: none !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* Input Fields Subtle Glow */
+.christmas-theme input:focus,
+.christmas-theme textarea:focus {
+  box-shadow: 
+    0 0 0 2px rgba(15, 138, 95, 0.3),
+    0 0 20px rgba(15, 138, 95, 0.2) !important;
+  border-color: #0f8a5f !important;
+}
+
+/* Pricing Cards Enhancement */
+.christmas-theme [class*="group"]:hover {
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 0 40px rgba(255, 215, 0, 0.1) !important;
+}
+
+/* Logo and Images - No filter changes */
+.christmas-theme img {
+  filter: none !important;
+}
+
+/* Modal/Dialog Backgrounds */
+.christmas-theme [class*="bg-gray-900"],
+.christmas-theme [class*="bg-gray-800"] {
+  box-shadow: 
+    0 0 50px rgba(15, 138, 95, 0.1),
+    inset 0 0 100px rgba(255, 215, 0, 0.02);
+}
+
+/* Feature Cards Glow */
+.christmas-theme .feature-card:hover {
+  box-shadow: 
+    0 10px 40px rgba(196, 30, 58, 0.1),
+    0 0 60px rgba(255, 215, 0, 0.05) !important;
+}
+
+/* Smooth Transitions */
+.christmas-theme * {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Ensure paragraphs and spans maintain color */
+.christmas-theme p,
+.christmas-theme span,
+.christmas-theme div {
+  color: inherit !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+/* Specific overrides for gradient text that might exist */
+.christmas-theme [style*="background-clip"],
+.christmas-theme [style*="webkit-background-clip"] {
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}

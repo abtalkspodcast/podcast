@@ -47,7 +47,7 @@ function ContactForm({ isOpen, onClose }: ContactFormProps) {
             {/* Left side - Google Map */}
             <div className="relative h-64 md:h-auto">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.4994447554743!2d77.37852!3d28.61976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDM3JzExLjEiTiA3N8KwMjInNTAuNiJF!5e0!3m2!1sen!2s!4v1699999999999!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.8847391876545!2d77.43610182514975!3d28.627414481710122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDM3JzM4LjciTiA3N8KwMjYnMTAuMCJF!5e0!3m2!1sen!2s!4v1699999999999!5m2!1sen!2s"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
