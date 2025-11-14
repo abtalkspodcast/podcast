@@ -302,7 +302,9 @@ function App() {
               <a href="#analytics" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Resources</a>
               <span className={`${isScrolled ? 'text-gray-400' : 'text-gray-500'}`}>|</span>
               <a href="#discover" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Discover</a>
-              
+            </div>
+
+            <div className="hidden md:flex items-center gap-6">
               {/* Santa Sticker */}
               {christmasThemeEnabled && (
                 <div className="animate-bounce-slow">
@@ -310,76 +312,76 @@ function App() {
                 </div>
               )}
               
-              <div className="flex items-center gap-6 ml-4">
-                <form onSubmit={handleSearch} className="relative">
-                  <input 
-                    type="text" 
-                    placeholder="Search" 
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className={`px-4 py-2 rounded-lg border focus:outline-none focus:border-green-500 w-48 transition-colors backdrop-blur-sm ${
-                      isScrolled 
-                        ? 'bg-white/20 text-gray-900 border-gray-300 placeholder:text-gray-600' 
-                        : 'bg-white/10 text-white border-white/30 placeholder:text-gray-300'
-                    }`}
-                  />
-                </form>
-                
-                {/* Conditional rendering: Show avatar if logged in, otherwise show auth buttons */}
-                {userData ? (
-                  <div className="relative">
-                    <button
-                      onClick={() => setShowUserMenu(!showUserMenu)}
-                      className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-                    >
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
-                        isScrolled ? 'bg-green-600 text-white' : 'bg-white text-green-600'
-                      }`}>
-                        {userData.name.charAt(0).toUpperCase()}
+              <form onSubmit={handleSearch} className="relative">
+                <input 
+                  type="text" 
+                  placeholder="Search" 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className={`px-4 py-2 rounded-lg border focus:outline-none focus:border-green-500 w-48 transition-colors backdrop-blur-sm ${
+                    isScrolled 
+                      ? 'bg-white/20 text-gray-900 border-gray-300 placeholder:text-gray-600' 
+                      : 'bg-white/10 text-white border-white/30 placeholder:text-gray-300'
+                  }`}
+                />
+              </form>
+              
+              {/* Conditional rendering: Show avatar if logged in, otherwise show auth buttons */}
+              {userData ? (
+                <div className="relative">
+                  <button
+                    onClick={() => setShowUserMenu(!showUserMenu)}
+                    className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+                  >
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
+                      isScrolled ? 'bg-green-600 text-white' : 'bg-white text-green-600'
+                    }`}>
+                      {userData.name.charAt(0).toUpperCase()}
+                    </div>
+                    <span className={`font-medium ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
+                      Hello, {userData.name}
+                    </span>
+                  </button>
+                  
+                  {/* User dropdown menu */}
+                  {showUserMenu && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                      <div className="px-4 py-2 border-b border-gray-200">
+                        <p className="font-medium text-gray-900">{userData.name}</p>
+                        <p className="text-sm text-gray-500 truncate">{userData.email}</p>
                       </div>
-                      <span className={`font-medium ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
-                        Hello, {userData.name}
-                      </span>
-                    </button>
-                    
-                    {/* User dropdown menu */}
-                    {showUserMenu && (
-                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
-                        <div className="px-4 py-2 border-b border-gray-200">
-                          <p className="font-medium text-gray-900">{userData.name}</p>
-                          <p className="text-sm text-gray-500 truncate">{userData.email}</p>
-                        </div>
-                        <button
-                          onClick={handleLogout}
-                          className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100 flex items-center gap-2"
-                        >
-                          <LogOut className="w-4 h-4" />
-                          Logout
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <>
-                    <button 
-                      onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); }}
-                      className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}
-                    >
-                      Log in
-                    </button>
-                    <button 
-                      onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); }}
-                      className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
-                    >
-                      Sign up free
-                    </button>
-                  </>
-                )}
-              </div>
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100 flex items-center gap-2"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <button 
+                    onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); }}
+                    className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}
+                  >
+                    Log in
+                  </button>
+                  <button 
+                    onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); }}
+                    className="px-4 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                  >
+                    Sign up free
+                  </button>
+                </>
+              )}
             </div>
 
+            {/* Mobile Menu Container */}
+            <div className="flex items-center md:hidden gap-2">
             {/* Mobile Search - Centered */}
-            <div className="md:hidden flex-1 mx-4">
+            <div className="flex-1 mx-4">
               <form onSubmit={handleSearch}>
                 <input 
                   type="text" 
@@ -396,11 +398,12 @@ function App() {
             </div>
 
             <button
-              className={`md:hidden ${isScrolled ? 'text-gray-900' : 'text-white'}`}
+              className={`${isScrolled ? 'text-gray-900' : 'text-white'}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
+          </div>
           </div>
         </div>
 
