@@ -382,7 +382,7 @@ function App() {
                 <>
                   <button 
                     onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); }}
-                    className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}
+                    className="px-4 py-1.5 bg-white/10 backdrop-blur-sm text-white rounded-lg hover:bg-white/20 transition-colors text-sm font-medium border border-white/20"
                   >
                     Log in
                   </button>
