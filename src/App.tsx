@@ -236,8 +236,8 @@ function App() {
           : 'bg-white/10 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)]'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between md:justify-between items-center h-16">
-            <div className="flex items-center gap-2">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center gap-2 flex-shrink-0">
               {/* Christmas Tree - Left side of logo */}
               {christmasThemeEnabled && (
                 <div className="christmas-tree-container">
@@ -307,26 +307,26 @@ function App() {
                 <img 
                   src="https://ggggg.s3.eu-north-1.amazonaws.com/Logo-removebg-preview+(1).png" 
                   alt="Logo" 
-                  className="h-24 md:h-32 lg:h-40 w-auto relative z-10"
+                  className="h-24 md:h-28 lg:h-32 w-auto relative z-10"
                 />
               </a>
             </div>
 
-            <div className="hidden md:flex items-center space-x-6">
-              <a href="#podcasting" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Podcasting</a>
-              <a href="#advertisers" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Advertisers</a>
-              <a href="#enterprise" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Enterprise</a>
-              <a href="#pricing" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Pricing</a>
-              <a href="#analytics" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Resources</a>
+            <div className="hidden lg:flex items-center space-x-3 xl:space-x-5 flex-shrink-0 mx-4">
+              <a href="#podcasting" className={`transition-colors text-sm whitespace-nowrap ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Podcasting</a>
+              <a href="#advertisers" className={`transition-colors text-sm whitespace-nowrap ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Advertisers</a>
+              <a href="#enterprise" className={`transition-colors text-sm whitespace-nowrap ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Enterprise</a>
+              <a href="#pricing" className={`transition-colors text-sm whitespace-nowrap ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Pricing</a>
+              <a href="#analytics" className={`transition-colors text-sm whitespace-nowrap ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Resources</a>
               <span className={`${isScrolled ? 'text-gray-400' : 'text-gray-500'}`}>|</span>
-              <a href="#discover" className={`transition-colors ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Discover</a>
+              <a href="#discover" className={`transition-colors text-sm whitespace-nowrap ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>Discover</a>
             </div>
 
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden lg:flex items-center gap-2 xl:gap-3 flex-shrink-0">
               {/* Santa Sticker */}
               {christmasThemeEnabled && (
                 <div className="animate-bounce-slow">
-                  <span className="text-4xl drop-shadow-lg">🎅</span>
+                  <span className="text-2xl xl:text-3xl drop-shadow-lg">🎅</span>
                 </div>
               )}
               
@@ -336,7 +336,7 @@ function App() {
                   placeholder="Search" 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className={`px-4 py-2 rounded-lg border focus:outline-none focus:border-green-500 w-48 transition-colors backdrop-blur-sm ${
+                  className={`px-3 py-1.5 rounded-lg border focus:outline-none focus:border-green-500 w-28 xl:w-36 transition-colors backdrop-blur-sm text-sm ${
                     isScrolled 
                       ? 'bg-white/20 text-gray-900 border-gray-300 placeholder:text-gray-600' 
                       : 'bg-white/10 text-white border-white/30 placeholder:text-gray-300'
@@ -382,13 +382,17 @@ function App() {
                 <>
                   <button 
                     onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); }}
-                    className="px-4 py-1.5 bg-white/10 backdrop-blur-sm text-white rounded-lg hover:bg-white/20 transition-colors text-sm font-medium border border-white/20"
+                    className={`px-4 xl:px-6 py-2 backdrop-blur-sm rounded-lg transition-colors text-sm font-medium border-2 whitespace-nowrap ${
+                      isScrolled 
+                        ? 'bg-white text-green-600 border-green-600 hover:bg-green-50' 
+                        : 'bg-white text-green-600 border-white hover:bg-gray-100'
+                    }`}
                   >
                     Log in
                   </button>
                   <button 
                     onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); }}
-                    className="px-4 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                    className="px-4 xl:px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium shadow-lg whitespace-nowrap"
                   >
                     Sign up free
                   </button>
@@ -459,13 +463,13 @@ function App() {
                 <>
                   <button 
                     onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); setMobileMenuOpen(false); }}
-                    className="block text-gray-300 hover:text-white w-full text-center"
+                    className="w-full px-8 py-3 bg-white text-green-600 rounded-lg hover:bg-gray-100 transition-colors font-medium border-2 border-white"
                   >
                     Log in
                   </button>
                   <button 
                     onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); setMobileMenuOpen(false); }}
-                    className="w-full px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                    className="w-full px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium shadow-lg"
                   >
                     Sign up free
                   </button>
