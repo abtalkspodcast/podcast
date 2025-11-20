@@ -1,12 +1,8 @@
 import { Link } from 'react-router-dom';
-import ChristmasSnowfall from './components/ChristmasSnowfall';
-import ShootingStars from './components/ShootingStars';
 
 export default function Episode126() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <ChristmasSnowfall />
-      <ShootingStars />
 
       {/* Back to Home Button - Fixed Top Left */}
       <Link to="/" className="fixed top-6 left-6 z-50 inline-flex items-center gap-2 bg-white text-blue-600 hover:text-blue-700 font-semibold px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all group">
@@ -18,7 +14,7 @@ export default function Episode126() {
 
       {/* Episode Hero - Matches Episode 127's improved structure */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1600&q=80)'}}></div>
+        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1600&q=80)'}}></div>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-wrap items-center gap-3 text-blue-100 mb-6">
             <span className="font-semibold text-lg">Episode 126</span>

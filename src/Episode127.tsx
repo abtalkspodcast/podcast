@@ -1,12 +1,8 @@
 import { Link } from 'react-router-dom';
-import ChristmasSnowfall from './components/ChristmasSnowfall';
-import ShootingStars from './components/ShootingStars';
 
 export default function Episode127() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <ChristmasSnowfall />
-      <ShootingStars />
 
       {/* Back to Home Button - Fixed Top Left */}
       <Link to="/" className="fixed top-6 left-6 z-50 inline-flex items-center gap-2 bg-white text-green-600 hover:text-green-700 font-semibold px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all group">
@@ -18,7 +14,7 @@ export default function Episode127() {
 
       {/* Episode Hero */}
       <section className="bg-gradient-to-br from-green-600 to-green-800 py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&q=80)'}}></div>
+        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&q=80)'}}></div>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-wrap items-center gap-3 text-green-100 mb-6">
             <span className="bg-red-600 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg">NEW</span>

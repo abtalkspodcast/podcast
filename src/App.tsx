@@ -3,10 +3,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ContactForm from './ContactForm';
 import AuthPage from './AuthPage';
-import ChristmasSnowfall from './components/ChristmasSnowfall';
-import ShootingStars from './components/ShootingStars';
-import './styles/christmas-theme.css';
-import './styles/christmas-page-enhancements.css';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -23,21 +19,8 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [userData, setUserData] = useState<{ name: string; email: string } | null>(null);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [christmasThemeEnabled] = useState(true); // Toggle this to enable/disable Christmas theme
   const [discoverBgPosition, setDiscoverBgPosition] = useState(0);
   // removed unused search-open state
-
-  // Add Christmas theme class to body
-  useEffect(() => {
-    if (christmasThemeEnabled) {
-      document.body.classList.add('christmas-theme');
-    } else {
-      document.body.classList.remove('christmas-theme');
-    }
-    return () => {
-      document.body.classList.remove('christmas-theme');
-    };
-  }, [christmasThemeEnabled]);
 
   // Check if user is logged in on component mount
   useEffect(() => {
@@ -220,16 +203,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Christmas Theme Elements */}
-      {christmasThemeEnabled && (
-        <>
-          <div className="christmas-lights"></div>
-          <div className="christmas-lights-bottom"></div>
-          <ChristmasSnowfall />
-          <ShootingStars />
-        </>
-      )}
-      
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/95 backdrop-blur-md shadow-lg' 
@@ -238,72 +211,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between md:justify-between items-center h-16">
             <div className="flex items-center gap-2">
-              {/* Christmas Tree - Left side of logo */}
-              {christmasThemeEnabled && (
-                <div className="christmas-tree-container">
-                  <svg width="35" height="45" viewBox="0 0 40 50" className="w-7 h-9 md:w-8 md:h-10 drop-shadow-lg">
-                    <defs>
-                      <radialGradient id="treeGlow">
-                        <stop offset="0%" stopColor="#ffd700" stopOpacity="0.4"/>
-                        <stop offset="100%" stopColor="transparent" stopOpacity="0"/>
-                      </radialGradient>
-                      <filter id="treeShadow">
-                        <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="#000" floodOpacity="0.3"/>
-                      </filter>
-                    </defs>
-                    {/* Tree trunk */}
-                    <rect x="17" y="38" width="6" height="8" fill="#8B4513" stroke="#654321" strokeWidth="0.5"/>
-                    {/* Tree layers - bottom to top */}
-                    <path d="M20 38 L8 38 L14 28 L6 28 L20 10 L34 28 L26 28 L32 38 Z" fill="#0f8a5f" stroke="#0a5f42" strokeWidth="1" filter="url(#treeShadow)"/>
-                    {/* Star on top */}
-                    <path d="M20 8 L21 11 L24 11 L22 13 L23 16 L20 14 L17 16 L18 13 L16 11 L19 11 Z" fill="#ffd700" stroke="#f4a300" strokeWidth="0.5"/>
-                    {/* Ornaments (small circles) */}
-                    <circle cx="20" cy="15" r="1.5" fill="#c41e3a"/>
-                    <circle cx="25" cy="20" r="1.5" fill="#ffd700"/>
-                    <circle cx="15" cy="20" r="1.5" fill="#c41e3a"/>
-                    <circle cx="20" cy="25" r="1.5" fill="#ffd700"/>
-                    <circle cx="18" cy="32" r="1.5" fill="#c41e3a"/>
-                    <circle cx="22" cy="32" r="1.5" fill="#ffd700"/>
-                    {/* Glow effect */}
-                    <circle cx="20" cy="25" r="15" fill="url(#treeGlow)"/>
-                  </svg>
-                </div>
-              )}
-              
               <a href="#home" className="cursor-pointer relative inline-block">
-                {christmasThemeEnabled && (
-                  <div className="absolute -top-8 md:-top-10 lg:-top-12 left-1/2 transform -translate-x-1/2 z-50">
-                    <svg width="120" height="60" viewBox="0 0 100 50" className="w-20 h-10 md:w-28 md:h-14 lg:w-32 lg:h-16 drop-shadow-2xl">
-                      {/* Santa Hat - positioned to look like it's on the logo */}
-                      <defs>
-                        <radialGradient id="santaGlowMain">
-                          <stop offset="0%" stopColor="#ffd700" stopOpacity="0.8"/>
-                          <stop offset="100%" stopColor="transparent" stopOpacity="0"/>
-                        </radialGradient>
-                        <filter id="shadowMain">
-                          <feDropShadow dx="0" dy="4" stdDeviation="5" floodColor="#000" floodOpacity="0.6"/>
-                        </filter>
-                        <linearGradient id="hatShine" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#ff1a3d" stopOpacity="1"/>
-                          <stop offset="100%" stopColor="#c41e3a" stopOpacity="1"/>
-                        </linearGradient>
-                      </defs>
-                      {/* Main hat triangle - bigger and more visible */}
-                      <path d="M50 2 L90 45 L10 45 Z" fill="url(#hatShine)" stroke="#8B0000" strokeWidth="2.5" filter="url(#shadowMain)"/>
-                      {/* White fur trim at bottom - thicker */}
-                      <ellipse cx="50" cy="45" rx="42" ry="7" fill="#ffffff" stroke="#d0d0d0" strokeWidth="1.5"/>
-                      <ellipse cx="50" cy="44" rx="42" ry="5" fill="#f5f5f5"/>
-                      {/* White pompom at tip - larger */}
-                      <circle cx="50" cy="2" r="10" fill="#ffffff" stroke="#d0d0d0" strokeWidth="1.5" filter="url(#shadowMain)"/>
-                      <circle cx="50" cy="2" r="8" fill="#fafafa"/>
-                      {/* Bright glow effects */}
-                      <circle cx="50" cy="2" r="15" fill="url(#santaGlowMain)"/>
-                      {/* Extra highlights for 3D effect */}
-                      <path d="M40 20 Q50 15 60 20 L55 30 Q50 27 45 30 Z" fill="#ff4d6a" opacity="0.4"/>
-                      <ellipse cx="50" cy="45" rx="42" ry="3" fill="#fff" opacity="0.6"/>
-                    </svg>
-                  </div>
-                )}
                 <img 
                   src="https://ggggg.s3.eu-north-1.amazonaws.com/Logo-removebg-preview+(1).png" 
                   alt="Logo" 
@@ -323,13 +231,6 @@ function App() {
             </div>
 
             <div className="hidden md:flex items-center gap-6">
-              {/* Santa Sticker */}
-              {christmasThemeEnabled && (
-                <div className="animate-bounce-slow">
-                  <span className="text-4xl drop-shadow-lg">🎅</span>
-                </div>
-              )}
-              
               <form onSubmit={handleSearch} className="relative">
                 <input 
                   type="text" 
@@ -382,13 +283,13 @@ function App() {
                 <>
                   <button 
                     onClick={() => { setAuthMode('login'); setIsAuthPageOpen(true); }}
-                    className="px-4 py-1.5 bg-white/10 backdrop-blur-sm text-white rounded-lg hover:bg-white/20 transition-colors text-sm font-medium border border-white/20"
+                    className="px-4 py-1.5 bg-white text-gray-900 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium border border-gray-300 shadow-sm"
                   >
                     Log in
                   </button>
                   <button 
                     onClick={() => { setAuthMode('signup'); setIsAuthPageOpen(true); }}
-                    className="px-4 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                    className="px-4 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium shadow-sm"
                   >
                     Sign up free
                   </button>
@@ -1410,16 +1311,6 @@ function App() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-            {christmasThemeEnabled && (
-              <div className="mb-6">
-                <p className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-green-500 to-yellow-500 mb-2 animate-pulse">
-                  🎄 Merry Christmas! 🎅
-                </p>
-                <p className="text-base md:text-lg text-gray-300">
-                  Wishing you joy, peace, and wonderful moments this holiday season! ✨
-                </p>
-              </div>
-            )}
             <p className="text-sm text-gray-400">&copy; 2025 All rights reserved.</p>
           </div>
         </div>
