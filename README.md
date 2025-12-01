@@ -139,9 +139,14 @@ Configuration:
 
 ## 🎬 **Video Tutorial**
 
+<video width="800" controls autoplay muted loop>
+  <source src="./assest/podcast_Ri3lIpDe.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 [Watch the workflow demonstration](./assest/podcast_Ri3lIpDe.mp4)
 
-*Click the link above to view the n8n automation workflow setup demonstration*
+*n8n automation workflow setup demonstration*
 ---
 
 ## 📞 **Support**
