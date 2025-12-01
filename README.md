@@ -29,8 +29,6 @@ The workflow is built using n8n nodes:
 
 Below is the workflow layout used in n8n:
 
-![Workflow Video](./assest/podcast_Ri3lIpDe.mp4)
-
 ```
 Manual Trigger
    ├── Get Email List (Google Sheets)
@@ -139,9 +137,7 @@ Configuration:
 
 ## 🎬 **Video Tutorial**
 
-![Workflow Video](https://github.com/abtalkspodcast/podcast/raw/main/assest/podcast_Ri3lIpDe.mp4)
-
-[Download the workflow demonstration video](./assest/podcast_Ri3lIpDe.mp4)
+https://github.com/abtalkspodcast/podcast/assets/podcast_Ri3lIpDe.mp4
 
 *n8n automation workflow setup demonstration*
 ---
