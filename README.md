@@ -139,7 +139,9 @@ Configuration:
 
 ## 🎬 **Video Tutorial**
 
-You mentioned adding a video — you can place it here:
+[Watch the workflow demonstration](./assest/podcast_Ri3lIpDe.mp4)
+
+*Click the link above to view the n8n automation workflow setup demonstration*
 ---
 
 ## 📞 **Support**
