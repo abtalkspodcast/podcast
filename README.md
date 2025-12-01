@@ -137,7 +137,14 @@ Configuration:
 
 ## 🎬 **Video Tutorial**
 
-https://github.com/abtalkspodcast/podcast/assets/podcast_Ri3lIpDe.mp4
+**To add an inline playable video:**
+1. Go to any GitHub issue or PR in this repository
+2. Drag and drop `assest/podcast_Ri3lIpDe.mp4` into the comment box
+3. GitHub will upload it and generate a URL like: `https://github.com/user-attachments/assets/xxxxx`
+4. Copy that URL and paste it here in the README
+
+**For now, download and watch:**  
+[📥 Download the workflow demonstration video](./assest/podcast_Ri3lIpDe.mp4)
 
 *n8n automation workflow setup demonstration*
 ---
