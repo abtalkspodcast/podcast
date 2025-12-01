@@ -139,12 +139,9 @@ Configuration:
 
 ## 🎬 **Video Tutorial**
 
-<video width="800" controls autoplay muted loop>
-  <source src="./assest/podcast_Ri3lIpDe.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Workflow Video](https://github.com/abtalkspodcast/podcast/raw/main/assest/podcast_Ri3lIpDe.mp4)
 
-[Watch the workflow demonstration](./assest/podcast_Ri3lIpDe.mp4)
+[Download the workflow demonstration video](./assest/podcast_Ri3lIpDe.mp4)
 
 *n8n automation workflow setup demonstration*
 ---
