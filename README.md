@@ -29,7 +29,7 @@ The workflow is built using n8n nodes:
 
 Below is the workflow layout used in n8n:
 
-![Workflow Video](./podcast_Ri3lIpDe.m4v)
+![Workflow Video](./assest/podcast_Ri3lIpDe.mp4)
 
 ```
 Manual Trigger
