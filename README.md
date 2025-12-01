@@ -138,13 +138,9 @@ Configuration:
 ## 🎬 **Video Tutorial**
 
 **To add an inline playable video:**
-1. Go to any GitHub issue or PR in this repository
-2. Drag and drop `assest/podcast_Ri3lIpDe.mp4` into the comment box
-3. GitHub will upload it and generate a URL like: `https://github.com/user-attachments/assets/xxxxx`
-4. Copy that URL and paste it here in the README
-
-**For now, download and watch:**  
-[📥 Download the workflow demonstration video](./assest/podcast_Ri3lIpDe.mp4)
+<video controls autoplay>
+  <source src="podcast_Ri3lIpDe.mp4" type="./assest/podcast_Ri3lIpDe.mp4">
+</video>
 
 *n8n automation workflow setup demonstration*
 ---
