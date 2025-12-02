@@ -1,10 +1,10 @@
 # POD Mail Automation System — README
 
-This README explains how to use the automated email sending system built in **n8n**. The workflow sends scheduled or templated emails to a list of recipients using Google Sheets + Gmail.
+This README explains how to use the automated email sending system built in *n8n*. The workflow sends scheduled or templated emails to a list of recipients using Google Sheets + Gmail.
 
 ---
 
-## 📌 **Overview**
+## 📌 *Overview*
 
 This automation system allows you to:
 
@@ -16,20 +16,20 @@ This automation system allows you to:
 
 The workflow is built using n8n nodes:
 
-* **Manual Trigger**
-* **Google Sheets (Templates)**
-* **Google Sheets (Email List)**
-* **Combine Node**
-* **Wait Node**
-* **Gmail Send Node**
+* *Manual Trigger*
+* *Google Sheets (Templates)*
+* *Google Sheets (Email List)*
+* *Combine Node*
+* *Wait Node*
+* *Gmail Send Node*
 
 ---
 
-## 🛠️ **Workflow Structure**
+## 🛠 *Workflow Structure*
 
 Below is the workflow layout used in n8n:
 
-```
+
 Manual Trigger
    ├── Get Email List (Google Sheets)
    ├── Get Templates (Google Sheets)
@@ -39,27 +39,27 @@ Manual Trigger
                └── Wait (based on template timing)
                       │
                       └── Send Email (Gmail)
-```
+
 
 An example workflow screenshot:
 
-*(image uploaded in chat)*
+(image uploaded in chat)
 
 ---
 
-## 📄 **Google Sheets Structure**
+## 📄 *Google Sheets Structure*
 
-### **1. Templates Sheet**
+### *1. Templates Sheet*
 
 | messages           | time |
 | ------------------ | ---- |
 | Welcome to webinar | 5    |
 | Here is reminder   | 10   |
 
-* **messages** → email body
-* **time** → number of minutes to wait before sending
+* *messages* → email body
+* *time* → number of minutes to wait before sending
 
-### **2. Email List Sheet**
+### *2. Email List Sheet*
 
 | name     | email                                       |
 | -------- | ------------------------------------------- |
@@ -70,62 +70,62 @@ Each row represents one recipient.
 
 ---
 
-## ⚙️ **Node-by-Node Explanation**
+## ⚙ *Node-by-Node Explanation*
 
-### 1️⃣ **Manual Trigger Node**
+### 1️⃣ *Manual Trigger Node*
 
-You start the workflow by clicking **Execute Workflow**.
+You start the workflow by clicking *Execute Workflow*.
 
-### 2️⃣ **Get Email List (Google Sheets Node)**
+### 2️⃣ *Get Email List (Google Sheets Node)*
 
 Configuration:
 
-* Operation: **Read**
+* Operation: *Read*
 * Returns an array of recipients.
 
-### 3️⃣ **Templates (Google Sheets Node)**
+### 3️⃣ *Templates (Google Sheets Node)*
 
 Configuration:
 
-* Operation: **Read**
+* Operation: *Read*
 * Returns the list of templates.
 
-### 4️⃣ **Combine Node**
+### 4️⃣ *Combine Node*
 
 Used to merge each template with each email.
 
 Example combined output:
 
-```
+
 {
   "name": "John",
   "email": "john@example.com",
   "messages": "Welcome to webinar",
   "time": 5
 }
-```
 
-### 5️⃣ **Wait Node**
+
+### 5️⃣ *Wait Node*
 
 Set to:
 
-```
+
 Wait for: {{$json.time}} minutes
-```
+
 
 This delays each message.
 
-### 6️⃣ **Send Email (Gmail Node)**
+### 6️⃣ *Send Email (Gmail Node)*
 
 Configuration:
 
-* To: `{{$json.email}}`
+* To: {{$json.email}}
 * Subject: You can hardcode or pick from template
-* Message Body: `{{$json.messages}}`
+* Message Body: {{$json.messages}}
 
 ---
 
-## ▶️ **Execution Flow**
+## ▶ *Execution Flow*
 
 1. Workflow starts.
 2. Email list and templates are read.
@@ -135,15 +135,18 @@ Configuration:
 
 ---
 
-## 🎬 **Video Tutorial**
+## 🎬 *Video Tutorial*
 
-![n8n Automation Workflow Demonstration](assest/podcast_final.mp4)
+<video width="100%" controls>
+  <source src="./assest/podcast_final.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-*n8n automation workflow setup demonstration - compressed for faster loading*
+n8n automation workflow setup demonstration - compressed for faster loading
 
 ---
 
-## 📞 **Support**
+## 📞 *Support*
 
 If you want to add more features:
 
@@ -156,6 +159,6 @@ Feel free to ask and I'll update this README.
 
 ---
 
-**Author:** Ashish Kumar
+*Author:* Ashish Kumar
 
 ---
