@@ -137,11 +137,10 @@ Configuration:
 
 ## 🎬 **Video Tutorial**
 
-**To add an inline playable video:**
-<video controls autoplay>
-  <source src="podcast_Ri3lIpDe.mp4" type="./assest/podcast_Ri3lIpDe.mp4">
-</video>
-*n8n automation workflow setup demonstration*
+[📥 Watch the workflow demonstration video](./assest/podcast_final.mp4)
+
+*n8n automation workflow setup demonstration - compressed for faster loading*
+
 ---
 
 ## 📞 **Support**
