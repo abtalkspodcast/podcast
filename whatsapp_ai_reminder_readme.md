@@ -128,7 +128,7 @@ Examples:
 
 ## 🎬 Demo Video
 
-![WhatsApp AI Reminder System Demo](assest/reminder.gif)
+![WhatsApp AI Reminder System Demo](assest/reminder.mp4)
 
 ---
 

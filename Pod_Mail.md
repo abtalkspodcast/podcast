@@ -137,7 +137,7 @@ Configuration:
 
 ## 🎬 **Video Tutorial**
 
-[📥 Watch the workflow demonstration video](./assest/podcast_final.mp4)
+![n8n Automation Workflow Demonstration](assest/podcast_final.mp4)
 
 *n8n automation workflow setup demonstration - compressed for faster loading*
 
