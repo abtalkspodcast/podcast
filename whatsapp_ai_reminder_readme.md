@@ -1,6 +1,6 @@
 # WhatsApp AI Reminder System — README
 
-This README explains how to build and use the **AI-powered Reminder System** using **WhatsApp + AI Agent + Memory** in n8n. This system allows users to set reminders naturally through WhatsApp, and the AI stores the reminder details and can trigger future actions.
+This README explains how to build and use the *AI-powered Reminder System* using *WhatsApp + AI Agent + Memory* in n8n. This system allows users to set reminders naturally through WhatsApp, and the AI stores the reminder details and can trigger future actions.
 
 ---
 
@@ -13,11 +13,11 @@ The WhatsApp AI Reminder System allows users to:
 - Expand into automatic reminder triggering (optional)
 
 The system uses the following nodes:
-- **WhatsApp Trigger** — receives user messages
-- **AI Agent** — interprets user intent
-- **LLM Model (Gemini/ChatGPT)** — generates responses
-- **Simple Memory** — stores reminder details
-- **WhatsApp Send & Wait** — sends replies
+- *WhatsApp Trigger* — receives user messages
+- *AI Agent* — interprets user intent
+- *LLM Model (Gemini/ChatGPT)* — generates responses
+- *Simple Memory* — stores reminder details
+- *WhatsApp Send & Wait* — sends replies
 
 ---
 
@@ -25,7 +25,7 @@ The system uses the following nodes:
 
 Workflow diagram structure:
 
-```
+
 WhatsApp Trigger
         │
         ▼
@@ -36,7 +36,7 @@ AI Agent
         │
         ▼
 WhatsApp Send Message & Wait for Response
-```
+
 
 ---
 
@@ -52,7 +52,7 @@ WhatsApp Send Message & Wait for Response
 
 ---
 
-## ⚙️ Node-by-Node Explanation
+## ⚙ Node-by-Node Explanation
 
 ### 1️⃣ WhatsApp Trigger
 Receives incoming WhatsApp messages and starts the workflow.
@@ -63,12 +63,12 @@ Receives incoming WhatsApp messages and starts the workflow.
 This node is the heart of the system.
 
 Connected components:
-- **Chat Model** → processes user intent
-- **Memory** → stores reminder details
-- **Tool (optional)** → execute future functions (saving reminders)
+- *Chat Model* → processes user intent
+- *Memory* → stores reminder details
+- *Tool (optional)* → execute future functions (saving reminders)
 
 Example prompt instructions:
-```
+
 You are a smart reminder assistant.
 Understand user messages and extract:
 - Reminder title
@@ -77,7 +77,7 @@ Understand user messages and extract:
 Store these details in memory.
 If details are missing, ask follow-up questions.
 Confirm every reminder clearly.
-```
+
 
 ---
 
@@ -88,20 +88,20 @@ Provides the intelligence to:
 - Generate confirmations
 
 You may set personality:
-```
+
 Be friendly. Always confirm extracted reminder details.
-```
+
 
 ---
 
 ### 4️⃣ Simple Memory Model
 Stores data such as:
-```
+
 Reminder: Pay electricity bill
 Date: 2025-02-12
 Time: 09:00 AM
 User preference: English
-```
+
 Memory allows the bot to remember previous reminders.
 
 ---
@@ -116,19 +116,23 @@ Examples:
 ---
 
 ## 💬 Example Conversation Flow
-**User:** Remind me to submit the report tomorrow.
+*User:* Remind me to submit the report tomorrow.
 
-**Bot:** Sure! What time tomorrow should I remind you?
+*Bot:* Sure! What time tomorrow should I remind you?
 
-**User:** 9 AM
+*User:* 9 AM
 
-**Bot:** Perfect! I’ll remind you tomorrow at 9 AM to submit the report.
+*Bot:* Perfect! I’ll remind you tomorrow at 9 AM to submit the report.
 
 ---
 
 ## 🎬 Demo Video
 
-![WhatsApp AI Reminder System Demo](assest/reminder.mp4)
+
+<video width="100%" controls>
+  <source src="./assest/podcast_final.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ---
 
@@ -145,4 +149,4 @@ If you'd like, I can help you expand any of these.
 ---
 
 ## 👨‍💻 Author
-**Ashish Kumar**
+*Ashish Kumar*
