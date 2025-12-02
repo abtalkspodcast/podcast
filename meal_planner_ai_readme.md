@@ -148,10 +148,7 @@ It will also remember this preference for future chats.
 </video>
 
 ### 🖥️ Workflow Recording
-<video width="100%" controls autoplay muted loop>
-  <source src="assest/meal planner/Recording 2025-11-22 192537_compressed.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![meal planner ai demo](assest/Recording 2025-11-22 192537_compressed.mp4)
 
 ---
 
